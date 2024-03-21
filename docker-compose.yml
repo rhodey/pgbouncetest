@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  timescaledb:
+    container_name: timescaledb
+    image: timescale/timescaledb:2.14.2-pg15
+    ports:
+      - 5434:5432
+    volumes:
+      - timescale:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    command: postgres -c 'max_connections=100'
+
+  pgbouncer:
+    container_name: pgbouncer
+    env_file: .env
+    ports:
+      - 6432:6432
+    build: .
+
+  pgbouncer-prepared:
+    container_name: pgbouncer-prepared
+    env_file: .env
+    ports:
+      - 6432:6432
+    build:
+      dockerfile: Dockerfile.prepared
+      context: .
+
+volumes:
+  timescale:
