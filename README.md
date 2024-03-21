@@ -6,7 +6,7 @@ Scripts for testing [pgbouncer](https://hub.docker.com/r/edoburu/pgbouncer) w/ [
   + pg 8.10.0
 
 ## Background
-Trying to reproduce [this issue](https://github.com/brianc/node-postgres/issues/3174) it makes sense that running test 1 with the default pgbouncer image could reproduce the issue and running test 2 with pgbouncer-prepared may not reproduce the issue
+Trying to reproduce [this issue](https://github.com/brianc/node-postgres/issues/3174) it makes sense that running test 1 with the default pgbouncer image could reproduce the issue and running test 2 with pgbouncer-prepared may not reproduce the issue. The difference between test 1 and 2 is that test 2 has [max_prepared_statements](https://www.pgbouncer.org/config.html#max_prepared_statements) enabled
 
 ## Test 1
 ```
