@@ -10,6 +10,17 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function shuffle(arr) {
+  let j, x, index
+  for (index = arr.length - 1; index > 0; index--) {
+      j = Math.floor(Math.random() * (index + 1))
+      x = arr[index]
+      arr[index] = arr[j]
+      arr[j] = x
+  }
+  return arr
+}
+
 function sleep(ms) {
   return new Promise((res, rej) => {
     setTimeout(res, ms)
@@ -41,7 +52,7 @@ function randomFields() {
       fields.push({name, val: uuidv4().substring(0, 3)})
     }
   }
-  return fields
+  return shuffle(fields)
 }
 
 // fields with null val will not be included in select
